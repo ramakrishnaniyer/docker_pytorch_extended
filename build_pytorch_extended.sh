@@ -1,1 +1,1 @@
-docker build -t gregj/pytorch_extended -f Dockerfile .
+docker build -t pytorch_with_jupyter -f Dockerfile .

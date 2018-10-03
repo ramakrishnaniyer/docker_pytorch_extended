@@ -1,5 +1,5 @@
 # From pytorch compiled from source
-FROM pytorch
+FROM pytorch/pytorch
 
 RUN apt-get update --fix-missing && apt-get install -y --no-install-recommends \
         vim 
@@ -34,7 +34,7 @@ RUN pip --no-cache-dir install \
 
 # Install vim bindings
   RUN jupyter nbextension install https://github.com/lambdalisue/jupyter-vim-binding/archive/master.tar.gz --system
-  RUN jupyter nbextension enable jupyter-vim-binding-master/vim_binding
+  RUN jupyter nbextension enable 
   RUN mkdir -p /root/.jupyter/custom
   COPY custom.js /root/.jupyter/custom
 
@@ -44,10 +44,4 @@ EXPOSE 9999
 
 # Move to home dir for root
 WORKDIR "/root"
-
-# Add aicsimage repo
-RUN git clone https://github.com/AllenCellModeling/aicsimage.git /opt/aicsimage && \
-    cd /opt/aicsimage && \
-    pip install -r requirements.txt && \
-    pip install -e .
 
